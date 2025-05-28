@@ -1,53 +1,5 @@
-// Exemplo de projetos - substitua pelo seu JSON real
-const projetos = [
-  {
-    id: 1,
-    nome: "Site Portfólio",
-    descricao: "Meu site pessoal para mostrar projetos e blog.",
-    categoria: "web",
-    tecnologias: ["HTML", "CSS", "Python", "Flask"],
-    posicao: { x: 15, y: 40 }, // em %
-    github: "https://github.com/leonciodev/site-portfolio",
-    demo: "https://leonciodev.com",
-  },
-  {
-    id: 2,
-    nome: "Bot Automação",
-    descricao: "Automatiza tarefas repetitivas do Windows.",
-    categoria: "automation",
-    tecnologias: ["Python", "PyAutoGUI", "Selenium"],
-    posicao: { x: 40, y: 60 },
-    github: "https://github.com/leonciodev/bot-automacao",
-  },
-  {
-    id: 3,
-    nome: "Análise de Dados",
-    descricao: "Projeto para analisar grandes conjuntos de dados.",
-    categoria: "datascience",
-    tecnologias: ["Python", "Pandas", "Matplotlib"],
-    posicao: { x: 60, y: 20 },
-    github: "https://github.com/leonciodev/analise-dados",
-  },
-  {
-    id: 4,
-    nome: "Classificador ML",
-    descricao: "Classificador de imagens usando Machine Learning.",
-    categoria: "ml",
-    tecnologias: ["Python", "scikit-learn", "TensorFlow"],
-    posicao: { x: 80, y: 50 },
-    github: "https://github.com/leonciodev/classificador-ml",
-    demo: "https://classificador-leonciodev.netlify.app",
-  },
-  {
-    id: 5,
-    nome: "Script Python",
-    descricao: "Script utilitário para manipulação de arquivos.",
-    categoria: "python",
-    tecnologias: ["Python"],
-    posicao: { x: 30, y: 80 },
-    github: "https://github.com/leonciodev/script-python",
-  }
-];
+// Lista de projetos - atualmente vazia
+const projetos = []; // ← nenhum projeto será exibido
 
 // Mapeamento cor das categorias para legenda e classes
 const categoriaCores = {
@@ -88,6 +40,8 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 
 let currentFilter = "all";
 let currentActiveDot = null;
+
+// (o restante do código permanece igual...)
 
 // --- FUNÇÕES ---
 

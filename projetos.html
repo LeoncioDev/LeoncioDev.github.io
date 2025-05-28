@@ -27,18 +27,30 @@
         aria-label="Buscar projeto pelo nome"
         placeholder="Buscar projeto..."
         autocomplete="off"
+        disabled
       />
       <div class="filters" aria-label="Filtros de categorias dos projetos">
-        <button class="filter-btn active" data-filter="all" aria-pressed="true">
+        <button
+          class="filter-btn active"
+          data-filter="all"
+          aria-pressed="true"
+          disabled
+        >
           Todos
         </button>
-        <button class="filter-btn" data-filter="web" aria-pressed="false">
+        <button
+          class="filter-btn"
+          data-filter="web"
+          aria-pressed="false"
+          disabled
+        >
           Web
         </button>
         <button
           class="filter-btn"
           data-filter="automation"
           aria-pressed="false"
+          disabled
         >
           Automação
         </button>
@@ -46,20 +58,35 @@
           class="filter-btn"
           data-filter="datascience"
           aria-pressed="false"
+          disabled
         >
           Data Science
         </button>
-        <button class="filter-btn" data-filter="ml" aria-pressed="false">
+        <button
+          class="filter-btn"
+          data-filter="ml"
+          aria-pressed="false"
+          disabled
+        >
           Machine Learning
         </button>
-        <button class="filter-btn" data-filter="python" aria-pressed="false">
+        <button
+          class="filter-btn"
+          data-filter="python"
+          aria-pressed="false"
+          disabled
+        >
           Python
         </button>
       </div>
     </section>
 
     <main>
-      <div id="map" aria-label="Mapa interativo dos projetos" role="list"></div>
+      <div id="map" aria-label="Mapa interativo dos projetos" role="list">
+        <p style="text-align: center; font-style: italic; color: #666">
+          Nenhum projeto disponível no momento.
+        </p>
+      </div>
 
       <aside
         id="project-info"
