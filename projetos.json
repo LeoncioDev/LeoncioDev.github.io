@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Dinofauro Game",
+    "description": "Jogo simples em Python onde você controla um dinossauro e evita obstáculos.",
+    "technologies": ["Python", "Pygame"],
+    "image": "img/dinofauro.jpg",
+    "link": "https://github.com/joopaulsl12/Dinofauro_game.py",
+    "side": "left",
+    "category": "automation",
+    "pos": {
+      "top": 100,
+      "left": 150
+    }
+  },
+  {
+    "id": 2,
+    "title": "Quebra-Cabeça",
+    "description": "Jogo de quebra-cabeça simples para testar lógica e raciocínio.",
+    "technologies": ["Python", "Tkinter"],
+    "image": "img/quebra_cabeca.jpg",
+    "link": "https://github.com/joopaulsl12/quebra_cabeca",
+    "side": "right",
+    "category": "web",
+    "pos": {
+      "top": 200,
+      "left": 300
+    }
+  }
+]

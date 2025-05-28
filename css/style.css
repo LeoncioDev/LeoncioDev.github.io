@@ -1,0 +1,521 @@
+/* ===========================
+   Variáveis de Cores
+=========================== */
+:root {
+  --bg-dark: #121212;
+  --bg-secondary: #1f1f1f;
+  --color-light: #eee;
+  --color-accent: #61dafb;
+  --color-accent-hover: #21a1f1;
+  --color-muted: #ccc;
+  --color-error: #f44336;
+  --modal-bg: rgba(0, 0, 0, 0.75);
+  --focus-outline: 3px solid var(--color-accent);
+}
+
+/* ===========================
+   Reset Básico
+=========================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   Base
+=========================== */
+body {
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--color-light);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Header
+=========================== */
+header {
+  background: var(--bg-secondary);
+  padding: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--color-light);
+  text-decoration: none;
+  cursor: default;
+  white-space: nowrap;
+}
+
+/* ===========================
+   Navegação
+=========================== */
+nav ul.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav ul.nav-list li a {
+  text-decoration: none;
+  color: var(--color-light);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease, outline-offset 0.3s ease;
+  outline-offset: 4px;
+}
+
+nav ul.nav-list li a:hover,
+nav ul.nav-list li a:focus-visible {
+  color: var(--color-accent);
+  outline: var(--focus-outline);
+}
+
+/* ===========================
+   Hero
+=========================== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  gap: 40px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #282c34 0%, var(--bg-secondary) 100%);
+}
+
+.hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.hero-text {
+  flex: 1 1 350px;
+  max-width: 500px;
+  color: var(--color-light);
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: var(--color-accent);
+  white-space: pre-wrap;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: var(--color-muted);
+}
+
+/* ===========================
+   Botões
+=========================== */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--bg-dark);
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--color-accent-hover);
+  outline: none;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: var(--color-accent);
+  color: var(--bg-dark);
+}
+
+/* ===========================
+   Hero Image
+=========================== */
+.hero-image {
+  flex: 1 1 300px;
+  max-width: 300px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(30, 144, 255, 0.5);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+  background-color: var(--bg-secondary);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-image:hover,
+.hero-image:focus-within {
+  transform: scale(1.06);
+  border-color: rgba(30, 144, 255, 0.8);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+/* ===========================
+   Seções
+=========================== */
+.section h2 {
+  font-size: 2.4rem;
+  color: var(--color-accent);
+  margin-bottom: 24px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ===========================
+   Sobre
+=========================== */
+.sobre-content {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sobre-text {
+  flex: 1 1 400px;
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  max-width: 600px;
+}
+
+.sobre-text p {
+  margin-bottom: 16px;
+}
+
+.sobre-image {
+  flex: 1 1 300px;
+  max-width: 300px;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px var(--color-accent)aa;
+}
+
+.sobre-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ===========================
+   Projetos
+=========================== */
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.projeto-card {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00000088;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover,
+.projeto-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px var(--color-accent)aa;
+}
+
+.projeto-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.projeto-info {
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projeto-info h3 {
+  color: var(--color-accent);
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+}
+
+.projeto-info p {
+  color: var(--color-muted);
+  font-size: 1rem;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+/* ===========================
+   Contato
+=========================== */
+#contato form {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#contato label {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+#contato input,
+#contato textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  background: #1a1a1a;
+  color: var(--color-light);
+  transition: all 0.3s ease;
+}
+
+#contato input:focus,
+#contato textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.contato-top {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;
+  gap: 20px; /* Espaço entre botão e redes sociais */
+}
+#formMessage {
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--color-error);
+}
+
+.hidden {
+  display: none;
+}
+
+/* ===========================
+   Redes Sociais
+=========================== */
+.redes-sociais {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.redes-sociais a {
+  color: var(--color-accent);
+  font-size: 2rem;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.redes-sociais a:hover,
+.redes-sociais a:focus-visible {
+  color: var(--color-accent-hover);
+  outline: none;
+}
+
+/* ===========================
+   Footer
+=========================== */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* ajuste a altura */
+  background-color: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  z-index: 1000;
+}
+/* ===========================
+   Responsividade
+=========================== */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  nav ul.nav-list {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text,
+  .hero-image {
+    flex: 1 1 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .sobre-content {
+    flex-direction: column;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===========================
+   Texto com efeito de digitação
+=========================== */
+#typing-name {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.1rem;
+  color: #33cc33;
+  background-color: transparent;
+  width: 100%;          /* Expandir para o máximo disponível */
+  max-width: none;      /* Remove a limitação */
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  white-space: pre-wrap;  /* mantém quebras */
+  overflow-wrap: break-word;
+  text-shadow:
+    0 0 3px #33cc33,
+    0 0 6px #2a9d2a;
+  position: relative;
+  font-weight: normal;
+  line-height: 1.3;
+  z-index: 1;          /* garante que fique atrás se for necessário */
+  display: inline-block; /* evita ocupar espaço vertical demais */
+}
+
+
+/* ===========================
+   Modal styles
+=========================== */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--modal-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1200;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+  max-width: 600px;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 0 25px rgba(30, 144, 255, 0.5);
+  position: relative;
+  outline: none;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  font-size: 2rem;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus-visible {
+  color: var(--color-accent-hover);
+  outline: none;
+}

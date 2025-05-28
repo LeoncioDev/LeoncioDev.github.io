@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mapa Interativo de Projetos Python - LeôncioDev</title>
+    <link rel="stylesheet" href="css/projetos.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Meus Projetos Python</h1>
+      <p>Explore meus projetos no mapa interativo</p>
+    </header>
+
+    <section
+      class="controls"
+      role="navigation"
+      aria-label="Controles dos projetos"
+    >
+      <input
+        type="search"
+        id="search-input"
+        aria-label="Buscar projeto pelo nome"
+        placeholder="Buscar projeto..."
+        autocomplete="off"
+      />
+      <div class="filters" aria-label="Filtros de categorias dos projetos">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">
+          Todos
+        </button>
+        <button class="filter-btn" data-filter="web" aria-pressed="false">
+          Web
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="automation"
+          aria-pressed="false"
+        >
+          Automação
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="datascience"
+          aria-pressed="false"
+        >
+          Data Science
+        </button>
+        <button class="filter-btn" data-filter="ml" aria-pressed="false">
+          Machine Learning
+        </button>
+        <button class="filter-btn" data-filter="python" aria-pressed="false">
+          Python
+        </button>
+      </div>
+    </section>
+
+    <main>
+      <div id="map" aria-label="Mapa interativo dos projetos" role="list"></div>
+
+      <aside
+        id="project-info"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden
+        tabindex="-1"
+        role="region"
+        aria-labelledby="proj-name"
+      >
+        <button id="close-info" aria-label="Fechar informações do projeto">
+          &times;
+        </button>
+        <h2 id="proj-name"></h2>
+        <p id="proj-desc"></p>
+        <p><strong>Tecnologias:</strong> <span id="proj-tech"></span></p>
+        <div id="proj-icons" aria-label="Ícones das tecnologias usadas"></div>
+        <p>
+          <a id="proj-link" href="#" target="_blank" rel="noopener noreferrer"
+            >Ver no GitHub</a
+          >
+          |
+          <a
+            id="proj-demo"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            hidden
+            >Ver Demo</a
+          >
+        </p>
+      </aside>
+    </main>
+
+    <section id="legend" aria-label="Legenda das categorias">
+      <h3>Legenda das Categorias</h3>
+      <ul id="legend-list"></ul>
+    </section>
+
+    <footer class="footer">
+      <p>© 2025 LeôncioDev - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="js/projetos.js" defer></script>
+  </body>
+</html>
