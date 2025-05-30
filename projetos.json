@@ -1,30 +1,24 @@
 [
   {
-    "id": 1,
-    "title": "Dinofauro Game",
-    "description": "Jogo simples em Python onde você controla um dinossauro e evita obstáculos.",
-    "technologies": ["Python", "Pygame"],
-    "image": "img/dinofauro.jpg",
-    "link": "https://github.com/joopaulsl12/Dinofauro_game.py",
-    "side": "left",
-    "category": "automation",
-    "pos": {
-      "top": 100,
-      "left": 150
+    "nome": "Dinofauro Game",
+    "descricao": "Jogo simples em Python onde você controla um dinossauro e evita obstáculos.",
+    "tecnologias": ["Python", "Pygame"],
+    "github": "https://github.com/joopaulsl12/Dinofauro_game.py",
+    "categoria": "automation",
+    "posicao": {
+      "x": 15,
+      "y": 10
     }
   },
   {
-    "id": 2,
-    "title": "Quebra-Cabeça",
-    "description": "Jogo de quebra-cabeça simples para testar lógica e raciocínio.",
-    "technologies": ["Python", "Tkinter"],
-    "image": "img/quebra_cabeca.jpg",
-    "link": "https://github.com/joopaulsl12/quebra_cabeca",
-    "side": "right",
-    "category": "web",
-    "pos": {
-      "top": 200,
-      "left": 300
+    "nome": "Quebra-Cabeça",
+    "descricao": "Jogo de quebra-cabeça simples para testar lógica e raciocínio.",
+    "tecnologias": ["Python", "Tkinter"],
+    "github": "https://github.com/joopaulsl12/quebra_cabeca",
+    "categoria": "web",
+    "posicao": {
+      "x": 30,
+      "y": 20
     }
   }
 ]

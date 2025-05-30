@@ -264,6 +264,7 @@ main {
   box-shadow: 0 0 5px #000;
 }
 
+
 /* Responsividade */
 @media (max-width: 850px) {
   main {
@@ -292,4 +293,21 @@ main {
     font-size: 0.9rem;
     padding: 8px 15px;
   }
+}
+footer.footer {
+  background: #121212;
+  color: #eee;
+  text-align: center;
+  padding: 15px 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Para garantir que o conteúdo não fique atrás do footer, 
+   adicionamos um padding-bottom ao body ou main equivalente à altura do footer */
+body {
+  padding-bottom: 60px; /* ajuste conforme a altura do footer */
 }

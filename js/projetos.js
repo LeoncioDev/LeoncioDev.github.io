@@ -1,5 +1,5 @@
-// Lista de projetos - atualmente vazia
-const projetos = []; // ← nenhum projeto será exibido
+// Lista de projetos - agora será carregada via JSON
+let projetos = []; // ← carregamento dinâmico
 
 // Mapeamento cor das categorias para legenda e classes
 const categoriaCores = {
@@ -10,7 +10,7 @@ const categoriaCores = {
   python: "#ffa500",
 };
 
-// Ícones básicos para as tecnologias (pode melhorar com imagens reais)
+// Ícones básicos para as tecnologias
 const techIcons = {
   HTML: "🟧",
   CSS: "🟦",
@@ -41,8 +41,6 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 let currentFilter = "all";
 let currentActiveDot = null;
 
-// (o restante do código permanece igual...)
-
 // --- FUNÇÕES ---
 
 // Criar os pontos dos projetos no mapa
@@ -50,15 +48,12 @@ function criarDots(projetosList) {
   map.innerHTML = "";
   projetosList.forEach((proj) => {
     const dot = document.createElement("button");
-    dot.classList.add("project-dot");
-    dot.classList.add(proj.categoria);
+    dot.classList.add("project-dot", proj.categoria);
     dot.setAttribute("role", "listitem");
     dot.setAttribute("aria-label", `Projeto: ${proj.nome}, Categoria: ${proj.categoria}`);
     dot.style.left = `${proj.posicao.x}%`;
     dot.style.top = `${proj.posicao.y}%`;
     dot.title = proj.nome;
-
-    // Acessibilidade
     dot.setAttribute("tabindex", "0");
 
     dot.addEventListener("click", () => mostrarInfoProjeto(proj, dot));
@@ -75,7 +70,6 @@ function criarDots(projetosList) {
 
 // Mostrar painel de info do projeto
 function mostrarInfoProjeto(proj, dot) {
-  // Desativar o anterior
   if (currentActiveDot) {
     currentActiveDot.classList.remove("active");
   }
@@ -86,7 +80,6 @@ function mostrarInfoProjeto(proj, dot) {
   projDesc.textContent = proj.descricao;
   projTech.textContent = proj.tecnologias.join(", ");
 
-  // Ícones tecnologias
   projIcons.innerHTML = "";
   proj.tecnologias.forEach((tech) => {
     const span = document.createElement("span");
@@ -95,13 +88,10 @@ function mostrarInfoProjeto(proj, dot) {
     span.title = tech;
     span.style.fontSize = "20px";
     span.style.userSelect = "none";
-
-    // Usando emoji como ícone temporário
     span.textContent = techIcons[tech] || "🔧";
     projIcons.appendChild(span);
   });
 
-  // Links GitHub e demo
   projLink.href = proj.github;
   projLink.textContent = "Ver no GitHub";
 
@@ -133,9 +123,7 @@ function criarLegenda() {
   legendList.innerHTML = "";
   Object.entries(categoriaCores).forEach(([cat, cor]) => {
     const li = document.createElement("li");
-    li.innerHTML = `
-      <span class="legend-color" style="background-color: ${cor};"></span> ${cat.charAt(0).toUpperCase() + cat.slice(1)}
-    `;
+    li.innerHTML = `<span class="legend-color" style="background-color: ${cor};"></span> ${cat.charAt(0).toUpperCase() + cat.slice(1)}`;
     legendList.appendChild(li);
   });
 }
@@ -169,25 +157,54 @@ function buscarProjetos(termo) {
 
 // --- EVENTOS ---
 
-// Fechar painel ao clicar no botão fechar
 closeBtn.addEventListener("click", fecharInfo);
 
-// Fechar painel ao apertar ESC
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !projectInfo.hidden) {
     fecharInfo();
   }
 });
 
-// Filtros categoria
 filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => filtrarProjetos(btn.dataset.filter));
 });
 
-// Buscar no input
 searchInput.addEventListener("input", () => buscarProjetos(searchInput.value));
 
 // --- INICIALIZAÇÃO ---
 
+// ... seu código existente ...
+
+// --- INICIALIZAÇÃO ---
+
 criarLegenda();
-criarDots(projetos);
+
+fetch('projetos.json')
+  .then((res) => res.json())
+  .then((data) => {
+    projetos = data.map(p => ({
+      ...p,
+      categoria: p.categoria.toLowerCase() // garante lower case
+    }));
+    criarDots(projetos);
+
+    // Agora que os dados estão carregados, habilitar busca e filtros
+    searchInput.disabled = false;
+    filterButtons.forEach(btn => btn.disabled = false);
+  })
+  .catch((err) => {
+    console.error('Erro ao carregar projetos:', err);
+    map.innerHTML = '<p style="text-align:center; font-style: italic; color:#666">Erro ao carregar projetos.</p>';
+  });
+
+// Ajustar fecharInfo para focar somente se searchInput habilitado
+function fecharInfo() {
+  if (currentActiveDot) {
+    currentActiveDot.classList.remove("active");
+    currentActiveDot = null;
+  }
+  projectInfo.hidden = true;
+  if (!searchInput.disabled) {
+    searchInput.focus();
+  }
+}
