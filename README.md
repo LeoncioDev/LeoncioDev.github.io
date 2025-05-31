@@ -37,4 +37,8 @@ Se quiser conversar, colaborar ou contratar, você pode me encontrar em:
 
 ---
 
+## 📝 Licença
+
+Este projeto está licenciado sob a **MIT License**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
 ⭐ Se gostou do projeto, não esqueça de deixar uma estrela no repositório!
