@@ -138,10 +138,11 @@ header {
 }
 
 /* ===========================
-   Hero Image
+   Hero Image (Atualizado)
 =========================== */
 .hero-image {
-  flex: 1 1 300px;
+  flex: 1 1 250px;
+  width: 100%;
   max-width: 300px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
@@ -150,6 +151,8 @@ header {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
   background-color: var(--bg-secondary);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  min-width: 180px;
+  min-height: 180px;
 }
 
 .hero-image:hover,
@@ -163,8 +166,9 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  object-position: center top; /* Foco no rosto */
   display: block;
+  border-radius: 50%;
 }
 
 /* ===========================
@@ -179,14 +183,14 @@ header {
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
   color: var(--color-light);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center; /* Centraliza o conteúdo da seção */
+  text-align: center;
 }
 
 #contato h2 {
-  color: var(--color-light); /* Garante que o nome Contato fique branco */
-  font-size: 2.5rem; /* Ajuste o tamanho conforme necessário */
+  color: var(--color-light);
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 20px; /* Distância abaixo do título */
+  margin-bottom: 20px;
 }
 
 .email-container {
@@ -223,7 +227,9 @@ header {
   box-shadow: 0 0 8px var(--color-accent-hover);
 }
 
-/* Redes sociais centralizadas abaixo do email */
+/* ===========================
+   Redes Sociais
+=========================== */
 .redes-sociais {
   display: flex;
   justify-content: center;
@@ -232,11 +238,11 @@ header {
 }
 
 .redes-sociais a.github {
-  color: #181717; /* Cor original do GitHub */
+  color: #181717;
 }
 
 .redes-sociais a.linkedin {
-  color: #0077B5; /* Cor original do LinkedIn */
+  color: #0077B5;
 }
 
 .redes-sociais a {
@@ -245,7 +251,7 @@ header {
   display: inline-flex;
   align-items: center;
   outline-offset: 4px;
-  border-radius: 6px; /* Adicionando border-radius para efeito de arredondamento */
+  border-radius: 6px;
 }
 
 .redes-sociais a:hover,
@@ -256,11 +262,11 @@ header {
 }
 
 .redes-sociais a.github:hover {
-  color: #6cc644; /* Cor de hover para GitHub (verde) */
+  color: #6cc644;
 }
 
 .redes-sociais a.linkedin:hover {
-  color: #004C87; /* Cor de hover para LinkedIn (azul escuro) */
+  color: #004C87;
 }
 
 /* ===========================
@@ -302,7 +308,7 @@ header {
 footer {
   background-color: var(--bg-secondary);
   padding: 20px 0;
-  text-align: center; /* Centraliza o texto */
+  text-align: center;
   color: var(--color-muted);
   font-size: 0.9rem;
 }
@@ -314,21 +320,26 @@ footer {
   .hero {
     padding: 40px 10px;
   }
+
   .hero-content {
     flex-direction: column;
   }
+
   .hero-text,
   .hero-image {
     max-width: 100%;
     flex: none;
   }
+
   #contato {
     padding: 30px 20px;
   }
+
   #contato button {
     width: 100%;
     text-align: center;
   }
+
   .redes-sociais {
     gap: 16px;
   }
