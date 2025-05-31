@@ -26,18 +26,20 @@
    Base
 =========================== */
 body {
-  background-color: #1a1a1a; /* cinza escuro neutro, igual ao fundo dos textos */
+  background-color: var(--bg-secondary);
   color: var(--color-light);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
   width: 90%;
   max-width: 1100px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ===========================
@@ -54,11 +56,10 @@ header {
 
 .header-container {
   display: flex;
-  justify-content: center; /* centraliza horizontalmente */
-  align-items: center;     /* centraliza verticalmente, se tiver altura */
-  height: 60px;            /* altura do header, pode ajustar */
+  justify-content: center;
+  align-items: center;
+  height: 60px;
 }
-
 
 .logo {
   display: inline-flex;
@@ -69,32 +70,7 @@ header {
   text-decoration: none;
   cursor: default;
   white-space: nowrap;
-}
-
-/* ===========================
-   Navegação
-=========================== */
-nav ul.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 24px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-nav ul.nav-list li a {
-  text-decoration: none;
-  color: var(--color-light);
-  font-weight: 600;
-  font-size: 1rem;
-  transition: color 0.3s ease, outline-offset 0.3s ease;
-  outline-offset: 4px;
-}
-
-nav ul.nav-list li a:hover,
-nav ul.nav-list li a:focus-visible {
-  color: var(--color-accent);
-  outline: var(--focus-outline);
+  user-select: none;
 }
 
 /* ===========================
@@ -127,17 +103,11 @@ nav ul.nav-list li a:focus-visible {
 }
 
 .hero-text h1 {
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
   margin-bottom: 16px;
   font-weight: 700;
   color: var(--color-accent);
   white-space: pre-wrap;
-}
-
-.hero-text p {
-  font-size: 1.2rem;
-  margin-bottom: 24px;
-  color: var(--color-muted);
 }
 
 /* ===========================
@@ -153,34 +123,18 @@ nav ul.nav-list li a:focus-visible {
   font-size: 1rem;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  user-select: none;
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
   background-color: var(--color-accent-hover);
   outline: none;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border: 2px solid var(--color-accent);
-  color: var(--color-accent);
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.btn-secondary:hover,
-.btn-secondary:focus-visible {
-  background-color: var(--color-accent);
-  color: var(--bg-dark);
+  box-shadow: 0 0 10px var(--color-accent-hover);
 }
 
 /* ===========================
@@ -214,266 +168,99 @@ nav ul.nav-list li a:focus-visible {
 }
 
 /* ===========================
-   Seções
+   Seção Contato
 =========================== */
-.section h2 {
-  font-size: 2.4rem;
-  color: var(--color-accent);
-  margin-bottom: 24px;
-  text-align: center;
-  font-weight: 700;
-}
-
-/* ===========================
-   Sobre
-=========================== */
-.sobre-content {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.sobre-text {
-  flex: 1 1 400px;
-  font-size: 1.1rem;
-  color: #e0e0e0;
-  max-width: 600px;
-}
-
-.sobre-text p {
-  margin-bottom: 16px;
-}
-
-.sobre-image {
-  flex: 1 1 300px;
-  max-width: 300px;
-  aspect-ratio: 4 / 3;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 15px var(--color-accent)aa;
-}
-
-.sobre-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-/* ===========================
-   Projetos
-=========================== */
-.projetos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-.projeto-card {
-  background: var(--bg-secondary);
-  border-radius: 10px;
-  box-shadow: 0 0 15px #00000088;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.projeto-card:hover,
-.projeto-card:focus-within {
-  transform: translateY(-6px);
-  box-shadow: 0 0 20px var(--color-accent)aa;
-}
-
-.projeto-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.projeto-info {
-  padding: 16px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.projeto-info h3 {
-  color: var(--color-accent);
-  margin-bottom: 12px;
-  font-size: 1.3rem;
-}
-
-.projeto-info p {
-  color: var(--color-muted);
-  font-size: 1rem;
-  margin-bottom: 16px;
-  flex-grow: 1;
-}
-
-/* ===========================
-   Contato
-=========================== */
-/* Container principal da seção contato */
 #contato {
-  background-color: #2f2f2f;       /* cinza escuro sóbrio */
-  padding: 30px 40px;              /* espaçamento confortável */
-  border-radius: 14px;             /* cantos arredondados suaves */
+  background-color: var(--bg-secondary);
+  padding: 40px 50px;
+  border-radius: 16px;
   max-width: 700px;
   margin: 50px auto 80px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);  /* sombra sutil */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
   color: var(--color-light);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background-color 0.3s ease;
+  text-align: center; /* Centraliza o conteúdo da seção */
 }
 
-#contato:hover {
-  background-color: #3a3a3a;       /* fundo escurece levemente ao passar o mouse */
+#contato h2 {
+  color: var(--color-light); /* Garante que o nome Contato fique branco */
+  font-size: 2.5rem; /* Ajuste o tamanho conforme necessário */
+  font-weight: 700;
+  margin-bottom: 20px; /* Distância abaixo do título */
 }
-/* Formulário dentro da seção contato */
-#contato form {
-  max-width: 600px;
-  margin: 0 auto 40px;
+
+.email-container {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Labels do formulário */
-#contato label {
-  font-weight: 600;
-  color: var(--color-accent);
-}
-
-/* Inputs e textarea */
-#contato input,
-#contato textarea {
-  padding: 12px;
-  border-radius: 6px;
-  border: none;
-  font-size: 1rem;
-  font-family: inherit;
-  resize: vertical;
-  background: #1a1a1a;
-  color: var(--color-light);
-  transition: all 0.3s ease;
-}
-
-#contato input:focus,
-#contato textarea:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* Container da parte superior do contato (botão e redes sociais) */
-.contato-top {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  user-select: text;
+  margin-bottom: 20px;
 }
 
-/* Mensagem do formulário */
-#formMessage {
-  margin-top: 10px;
-  font-weight: 600;
-  color: var(--color-error);
+#copyEmailBtn {
+  background: var(--color-accent);
+  border: none;
+  color: var(--bg-dark);
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  white-space: nowrap;
 }
 
-.hidden {
-  display: none;
+#copyEmailBtn:hover,
+#copyEmailBtn:focus-visible {
+  background-color: var(--color-accent-hover);
+  outline: none;
+  box-shadow: 0 0 8px var(--color-accent-hover);
 }
 
-
-/* ===========================
-   Redes Sociais
-=========================== */
+/* Redes sociais centralizadas abaixo do email */
 .redes-sociais {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 28px;
+  margin-top: 0;
+}
+
+.redes-sociais a.github {
+  color: #181717; /* Cor original do GitHub */
+}
+
+.redes-sociais a.linkedin {
+  color: #0077B5; /* Cor original do LinkedIn */
 }
 
 .redes-sociais a {
-  color: var(--color-accent);
-  font-size: 2rem;
+  font-size: 2.4rem;
   transition: color 0.3s ease;
   display: inline-flex;
   align-items: center;
+  outline-offset: 4px;
+  border-radius: 6px; /* Adicionando border-radius para efeito de arredondamento */
 }
 
 .redes-sociais a:hover,
 .redes-sociais a:focus-visible {
   color: var(--color-accent-hover);
-  outline: none;
+  outline: var(--focus-outline);
+  outline-offset: 4px;
 }
 
-/* ===========================
-   Footer
-=========================== */
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw; /* Usa a largura total da viewport */
-  height: 60px;
-  background-color: #222;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* centraliza horizontalmente */
-  font-size: 14px;
-  z-index: 1000;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-align: center;
-  user-select: none;
+.redes-sociais a.github:hover {
+  color: #6cc644; /* Cor de hover para GitHub (verde) */
 }
 
-/* ===========================
-   Responsividade
-=========================== */
-@media (max-width: 768px) {
-  /* Já tem esses ajustes, ótimo! */
-
-  /* Se quiser que o menu fique em estilo "hamburguer", aí já precisaria JS, mas por enquanto: */
-
-  /* Ajustar o tamanho do texto para ficar legível */
-  body, p {
-    font-size: 1rem;
-  }
-
-  /* Ajustar largura máxima dos projetos para ficarem em coluna */
-  .projetos-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  /* Ajustar as cartas dos projetos para preencherem bem a tela */
-  .projeto-card {
-    max-width: 100%;
-  }
-
-  /* Ajustar o footer para não ficar fixo (se estiver atrapalhando visualização) */
-  footer {
-    position: static;
-    padding: 15px 0;
-  }
-
-  /* Ajustar botões para ocupar largura total e facilitar clique */
-  .btn-primary, .btn-secondary {
-    width: 100%;
-    text-align: center;
-  }
-
-  /* Ajustar espaçamentos gerais */
-  .container {
-    width: 95%;
-  }
+.redes-sociais a.linkedin:hover {
+  color: #004C87; /* Cor de hover para LinkedIn (azul escuro) */
 }
 
 /* ===========================
@@ -484,69 +271,65 @@ footer {
   font-size: 1.1rem;
   color: #33cc33;
   background-color: transparent;
-  width: 100%;
   max-width: 90%;
-  max-height: 120px;   /* limita a altura do texto */
-  padding: 10px 15px;
-  border-radius: 5px;
-  box-sizing: border-box;
-  white-space: pre-wrap;
+  max-height: 120px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-accent);
   overflow-wrap: break-word;
-  overflow-y: auto;   /* aparece scroll se passar do limite */
-  text-shadow:
-    0 0 3px #33cc33,
-    0 0 6px #2a9d2a;
-  position: relative;
-  font-weight: normal;
-  line-height: 1.3;
-  z-index: 1;
-  display: inline-block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  letter-spacing: 2.5px;
+  margin-top: 15px;
+  border-right: 2px solid #33cc33;
+  animation: typing-caret 1s steps(1) infinite;
+  user-select: none;
 }
+
+@keyframes typing-caret {
+  0%, 100% {
+    border-color: #33cc33;
+  }
+  50% {
+    border-color: transparent;
+  }
+}
+
 /* ===========================
-   Modal styles
+   Footer
 =========================== */
-.modal {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: var(--modal-bg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  z-index: 1200;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
+footer {
   background-color: var(--bg-secondary);
-  border-radius: 10px;
-  max-width: 600px;
-  width: 100%;
-  padding: 2rem 2.5rem;
-  box-shadow: 0 0 25px rgba(30, 144, 255, 0.5);
-  position: relative;
-  outline: none;
+  padding: 20px 0;
+  text-align: center; /* Centraliza o texto */
+  color: var(--color-muted);
+  font-size: 0.9rem;
 }
 
-.modal-close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: none;
-  border: none;
-  color: var(--color-accent);
-  font-size: 2rem;
-  cursor: pointer;
-  font-weight: 700;
-  line-height: 1;
-  transition: color 0.3s ease;
-}
-
-.modal-close-btn:hover,
-.modal-close-btn:focus-visible {
-  color: var(--color-accent-hover);
-  outline: none;
+/* ===========================
+   Responsividade
+=========================== */
+@media (max-width: 720px) {
+  .hero {
+    padding: 40px 10px;
+  }
+  .hero-content {
+    flex-direction: column;
+  }
+  .hero-text,
+  .hero-image {
+    max-width: 100%;
+    flex: none;
+  }
+  #contato {
+    padding: 30px 20px;
+  }
+  #contato button {
+    width: 100%;
+    text-align: center;
+  }
+  .redes-sociais {
+    gap: 16px;
+  }
 }

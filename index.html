@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Portfólio LeôncioDev</title>
 
-    <!-- Font Awesome CDN -->
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- Meta para SEO básico -->
     <meta
       name="description"
       content="Portfólio de João Paulo Leôncio, programador apaixonado por criar soluções modernas e eficientes."
@@ -21,74 +20,46 @@
       name="keywords"
       content="portfólio, programador, desenvolvimento web, João Paulo Leôncio, projetos, tecnologia"
     />
-
-    <!-- Ícone de favorito -->
     <link rel="icon" href="favicon.ico" />
-
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- Header com logo e menu -->
+    <!-- Header com logo -->
     <header>
       <div class="container header-container">
-        <a
-          href="#top"
-          class="logo"
-          aria-label="Logo LeôncioDev"
-          role="banner"
-          tabindex="0"
-        >
-          LeôncioDev
-        </a>
+        <a href="#top" class="logo" aria-label="Logo LeôncioDev">LeôncioDev</a>
       </div>
     </header>
 
     <section class="hero" id="top" role="region" aria-label="Seção principal">
-      <div
-        class="container hero-content"
-        style="display: flex; align-items: center; gap: 2rem"
-      >
-        <div class="hero-text" style="flex: 1">
-          <!-- Aqui vai o efeito typing -->
+      <div class="container hero-content">
+        <div class="hero-text">
           <h1
             id="typing-name"
             aria-live="polite"
             aria-atomic="true"
             aria-relevant="additions"
             tabindex="0"
-            style="min-height: 150px; white-space: pre-wrap"
           ></h1>
 
-          <!-- Botão para alternar idioma -->
           <button
             id="btnLangToggle"
             class="btn-primary"
             aria-label="Alternar idioma do texto"
-            style="margin-bottom: 1rem; padding: 0.5rem 1rem; cursor: pointer"
           >
             EN
           </button>
 
-          <a
-            href="projetos.html"
-            class="btn-primary"
-            tabindex="0"
-            title="Ver meus projetos"
-          >
+          <a href="projetos.html" class="btn-primary" title="Ver meus projetos">
             <i class="fas fa-folder-open" aria-hidden="true"></i> Ver meus
             projetos
           </a>
         </div>
-        <div
-          class="hero-image"
-          tabindex="0"
-          style="flex: 1; text-align: center"
-        >
+        <div class="hero-image">
           <img
             src="img/profile.jpg"
             alt="Foto de João Paulo Leôncio sorrindo"
             loading="lazy"
-            style="max-width: 100%; height: auto; border-radius: 8px"
           />
         </div>
       </div>
@@ -103,165 +74,46 @@
     >
       <h2 id="contato-title">Contato</h2>
 
-      <!-- Botão que abre o popup do formulário -->
-      <div class="contato-top" style="display: flex; align-items: center">
-        <button
-          id="openContactFormBtn"
-          class="btn-primary"
-          aria-haspopup="dialog"
-          aria-controls="contactModal"
-          aria-expanded="false"
-        >
-          <i class="fas fa-envelope" aria-hidden="true"></i> Contato
-        </button>
-        <div
-          class="social-dropdown"
-          tabindex="0"
-          aria-haspopup="true"
-          aria-expanded="false"
-          aria-label="Redes sociais de João Paulo Leôncio"
-          style="margin-left: 20px"
-        >
+      <div class="contato-top">
+        <!-- E-mail com botão de copiar -->
+        <div class="email-container" tabindex="0">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <span id="email-text" aria-label="Endereço de e-mail">
+            leonciodev.contact@gmail.com
+          </span>
           <button
-            id="socialToggle"
-            class="btn-primary"
-            aria-haspopup="true"
-            aria-expanded="false"
-            aria-controls="socialMenu"
+            id="copyEmailBtn"
+            title="Copiar e-mail"
+            aria-label="Copiar e-mail"
           >
-            <i class="fas fa-users" aria-hidden="true"></i> Redes Sociais
-            <i class="fas fa-caret-down"></i>
+            <i class="fas fa-copy"></i>
           </button>
-          <ul
-            id="socialMenu"
-            class="dropdown-menu hidden"
-            role="menu"
-            aria-label="Lista de redes sociais"
-          >
-            <li role="none">
-              <a
-                href="https://github.com/LeoncioDev"
-                target="_blank"
-                rel="noopener noreferrer"
-                role="menuitem"
-                tabindex="-1"
-              >
-                <i class="fab fa-github" aria-hidden="true"></i> GitHub
-              </a>
-            </li>
-            <li role="none">
-              <a
-                href="https://www.linkedin.com/in/jo%C3%A3o-paulo-le%C3%B4ncio-78071627b/"
-                target="_blank"
-                rel="noopener noreferrer"
-                role="menuitem"
-                tabindex="-1"
-              >
-                <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
-              </a>
-            </li>
-            <!-- Aqui você pode adicionar mais itens, se quiser -->
-          </ul>
         </div>
       </div>
 
-      <!-- Popup Modal do Formulário -->
-      <div
-        id="contactModal"
-        class="modal hidden"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modalTitle"
-        tabindex="-1"
-      >
-        <div class="modal-content" tabindex="0">
-          <button
-            id="closeModalBtn"
-            class="modal-close-btn"
-            aria-label="Fechar formulário de contato"
-          >
-            &times;
-          </button>
-          <h3 id="modalTitle">Formulário de Contato</h3>
-          <form
-            id="contactForm"
-            novalidate
-            aria-describedby="formMessage"
-            aria-live="polite"
-          >
-            <label for="nome">Nome</label>
-            <input
-              type="text"
-              id="nome"
-              name="nome"
-              required
-              minlength="3"
-              placeholder="Seu nome"
-              aria-required="true"
-              autocomplete="name"
-            />
+      <!-- Redes sociais abaixo do email -->
+      <div class="redes-sociais" role="list">
+        <a
+          href="https://github.com/LeoncioDev"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="GitHub de João Paulo Leôncio"
+          aria-label="GitHub"
+          role="listitem"
+        >
+          <i class="fab fa-github"></i>
+        </a>
 
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="seu@email.com"
-              aria-required="true"
-              autocomplete="email"
-            />
-
-            <label for="telefone">Telefone (opcional)</label>
-            <input
-              type="tel"
-              id="telefone"
-              name="telefone"
-              placeholder="(xx) xxxxx-xxxx"
-              autocomplete="tel"
-            />
-
-            <label for="assunto">Assunto</label>
-            <input
-              type="text"
-              id="assunto"
-              name="assunto"
-              required
-              placeholder="Assunto da mensagem"
-              aria-required="true"
-            />
-
-            <label for="mensagem">Mensagem</label>
-            <textarea
-              id="mensagem"
-              name="mensagem"
-              rows="5"
-              required
-              minlength="10"
-              placeholder="Escreva sua mensagem aqui..."
-              aria-required="true"
-            ></textarea>
-
-            <label class="checkbox-container">
-              <input
-                type="checkbox"
-                id="consentimento"
-                name="consentimento"
-                required
-                aria-required="true"
-              />
-              Concordo em ser contatado.
-            </label>
-
-            <button type="submit" class="btn-primary">Enviar</button>
-            <p
-              id="formMessage"
-              class="hidden"
-              role="alert"
-              aria-live="assertive"
-            ></p>
-          </form>
-        </div>
+        <a
+          href="https://www.linkedin.com/in/jo%C3%A3o-paulo-le%C3%B4ncio-78071627b/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="LinkedIn de João Paulo Leôncio"
+          aria-label="LinkedIn"
+          role="listitem"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
       </div>
     </section>
 
@@ -272,6 +124,7 @@
       </div>
     </footer>
 
+    <!-- JavaScript externo -->
     <script src="js/script.js" defer></script>
   </body>
 </html>

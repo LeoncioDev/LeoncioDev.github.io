@@ -1,161 +1,91 @@
-const typingElement = document.getElementById('typing-name');
-const typingSpeed = 50; // em ms
+document.addEventListener("DOMContentLoaded", () => {
+  const textos = {
+    pt: [
+      "Olá, eu sou o João Paulo Leôncio.",
+      "Sou programador apaixonado por criar soluções eficientes.",
+      "Confira meus projetos e contatos abaixo!",
+    ],
+    en: [
+      "Hi, I'm João Paulo Leôncio.",
+      "I'm a programmer passionate about creating efficient solutions.",
+      "Check out my projects and contacts below!",
+    ],
+  };
 
-const texts = {
-  'pt-BR': {
-    introText: 'Olá, eu sou João Paulo Leôncio! Bem-vindo ao meu portfólio.\n\n',
-    presentationText: [
-      'Aqui você encontra meus projetos e trabalhos.',
-      'Fique à vontade para explorar e entrar em contato!'
-    ]
-  },
-  'en-US': {
-    introText: 'Hi, I’m João Paulo Leôncio! Welcome to my portfolio.\n\n',
-    presentationText: [
-      'Here you’ll find my projects and work.',
-      'Feel free to explore and get in touch!'
-    ]
-  }
-};
+  let idioma = "pt";
+  let textoAtualIndex = 0;
+  let charIndex = 0;
+  const typingSpeed = 60;
+  const pauseDelay = 1500;
 
-let currentLang = 'pt-BR';
-let fullText = '';
-let index = 0;
-const btnLangToggle = document.getElementById('btnLangToggle');
+  const typingElement = document.getElementById("typing-name");
+  const btnLangToggle = document.getElementById("btnLangToggle");
+  const btnCopy = document.getElementById("copyEmailBtn");
+  const emailText = document.getElementById("email-text");
 
-let timeoutId = null; // guardar o timeout para cancelar
+  let typingTimeout;
 
-const escapeHTML = (text) => text
-  .replace(/&/g, '&amp;')
-  .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
-  .replace(/"/g, '&quot;')
-  .replace(/'/g, '&#39;');
+  // Função que faz o efeito de digitação
+  const typeText = () => {
+    const frases = textos[idioma];
+    if (!frases?.length) return;
 
-function updateFullText() {
-  const { introText, presentationText } = texts[currentLang];
-  const rawText = introText + presentationText.join('\n');
-  fullText = escapeHTML(rawText);
-}
+    const fraseAtual = frases[textoAtualIndex];
 
-function typeEffect() {
-  if (!typingElement) return;
-
-  let output = '';
-  let tempIndex = index;
-
-  function typeNextChar() {
-    if (tempIndex >= fullText.length) return;
-
-    const currentChar = fullText.charAt(tempIndex);
-
-    if (currentChar === '\n') {
-      output += '<br>';
+    if (charIndex < fraseAtual.length) {
+      typingElement.textContent += fraseAtual.charAt(charIndex);
+      charIndex++;
+      typingTimeout = setTimeout(typeText, typingSpeed);
     } else {
-      output += currentChar;
+      typingTimeout = setTimeout(eraseText, pauseDelay);
     }
+  };
 
-    tempIndex++;
-    typingElement.innerHTML = output;
-
-    if (tempIndex < fullText.length) {
-      index = tempIndex;
-      timeoutId = setTimeout(() => requestAnimationFrame(typeNextChar), typingSpeed);
+  // Função que apaga o texto
+  const eraseText = () => {
+    if (charIndex > 0) {
+      typingElement.textContent = typingElement.textContent.slice(0, -1);
+      charIndex--;
+      typingTimeout = setTimeout(eraseText, typingSpeed / 2);
+    } else {
+      textoAtualIndex = (textoAtualIndex + 1) % textos[idioma].length;
+      typingTimeout = setTimeout(typeText, typingSpeed);
     }
+  };
+
+  // Inicializa o efeito
+  const iniciarTyping = () => {
+    clearTimeout(typingTimeout);
+    typingElement.textContent = "";
+    charIndex = 0;
+    typeText();
+  };
+
+  iniciarTyping();
+
+  // Alternar idioma
+  btnLangToggle.addEventListener("click", () => {
+    clearTimeout(typingTimeout);
+    textoAtualIndex = 0;
+    charIndex = 0;
+    typingElement.textContent = "";
+    idioma = idioma === "pt" ? "en" : "pt";
+    btnLangToggle.textContent = idioma.toUpperCase();
+    iniciarTyping();
+  });
+
+  // Copiar e-mail
+  if (btnCopy && emailText) {
+    btnCopy.addEventListener("click", () => {
+      const email = emailText.textContent.trim();
+      navigator.clipboard.writeText(email).then(() => {
+        btnCopy.innerHTML = "✔";
+        setTimeout(() => {
+          btnCopy.innerHTML = '<i class="fas fa-copy"></i>';
+        }, 1500);
+      }).catch(() => {
+        alert("Falha ao copiar o e-mail. Por favor, copie manualmente.");
+      });
+    });
   }
-
-  typeNextChar();
-}
-
-function toggleLanguage() {
-  if (timeoutId) {
-    clearTimeout(timeoutId);
-    timeoutId = null;
-  }
-
-  currentLang = currentLang === 'pt-BR' ? 'en-US' : 'pt-BR';
-  btnLangToggle.textContent = currentLang === 'pt-BR' ? 'EN' : 'PT';
-
-  if (typingElement) typingElement.innerHTML = '';
-  index = 0;
-
-  updateFullText();
-  typeEffect();
-}
-
-// ======== Controle dos botões Contato e Redes Sociais ========
-
-// Seleção dos elementos para contato e redes sociais
-const openContactFormBtn = document.getElementById('openContactFormBtn');
-const contactModal = document.getElementById('contactModal');
-const closeModalBtn = document.getElementById('closeModalBtn');
-
-const socialToggle = document.getElementById('socialToggle');
-const socialMenu = document.getElementById('socialMenu');
-
-// Função para abrir o modal de contato
-function openModal() {
-  contactModal.classList.remove('hidden');
-  contactModal.setAttribute('aria-hidden', 'false');
-  openContactFormBtn.setAttribute('aria-expanded', 'true');
-  contactModal.focus();
-}
-
-// Função para fechar o modal de contato
-function closeModal() {
-  contactModal.classList.add('hidden');
-  contactModal.setAttribute('aria-hidden', 'true');
-  openContactFormBtn.setAttribute('aria-expanded', 'false');
-  openContactFormBtn.focus();
-}
-
-// Função para abrir/fechar o menu de redes sociais
-function toggleSocialMenu() {
-  const isHidden = socialMenu.classList.contains('hidden');
-  if (isHidden) {
-    socialMenu.classList.remove('hidden');
-    socialToggle.setAttribute('aria-expanded', 'true');
-    socialMenu.focus();
-  } else {
-    socialMenu.classList.add('hidden');
-    socialToggle.setAttribute('aria-expanded', 'false');
-    socialToggle.focus();
-  }
-}
-
-// Eventos para controle dos botões
-openContactFormBtn.addEventListener('click', openModal);
-closeModalBtn.addEventListener('click', closeModal);
-
-// Fechar modal ao clicar fora do conteúdo (background)
-contactModal.addEventListener('click', (e) => {
-  if (e.target === contactModal) {
-    closeModal();
-  }
-});
-
-// Toggle menu redes sociais
-socialToggle.addEventListener('click', toggleSocialMenu);
-
-// Fecha o menu de redes sociais se clicar fora dele
-document.addEventListener('click', (e) => {
-  if (!socialToggle.contains(e.target) && !socialMenu.contains(e.target)) {
-    socialMenu.classList.add('hidden');
-    socialToggle.setAttribute('aria-expanded', 'false');
-  }
-});
-
-// ================================================================
-
-window.addEventListener('DOMContentLoaded', () => {
-  if (btnLangToggle) {
-    btnLangToggle.textContent = currentLang === 'pt-BR' ? 'EN' : 'PT';
-    btnLangToggle.addEventListener('click', toggleLanguage);
-  }
-
-  updateFullText();
-
-  if (typingElement) typingElement.innerHTML = '';
-  index = 0;
-  typeEffect();
 });
